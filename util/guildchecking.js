@@ -80,7 +80,7 @@ const json = {
         },
         "asia": {
           "jap": ":495pxJapan:",
-          "man": ":495pxManchukuo: ",
+          "man": ":495pxManchukuo:",
           "sia": ":495pxSiam"
         }
       }
@@ -119,6 +119,7 @@ function checkforfile(message, callback){
       callback(); // return
      }
       catch(e){
+        console.log(e);
          fs.appendFile(fileloc, JSON.stringify(json) , function (err2) {
            callback();
            });
