@@ -11,9 +11,7 @@ module.exports = {
                 callback();
             }
             else {
-                console.log(setcountry)
                 if(setcountry == " " || setcountry == ""){
-                    console.log("aaa")
                      fileloc =  "./config/" + message.guild.id + ".json";
                      message.reply("You have successfuly reserved " + country);
                     setcountryjson(list, fileloc, jsonloc, country, message.author.id, function() {
@@ -37,24 +35,81 @@ module.exports = {
     removeplayer: function(message, list, callback){
         checkforuser(list, message.author.id, function(status, country, setcountry) {
             if (status == false){
-            message.reply("You have not signed up for a country.");
-            callback();
+            return message.reply("You have not signed up for a country.");
             }
             else { 
             fileloc =  "./config/" + message.guild.id + ".json";
-            setcountryjson(list, fileloc, country, setcountry, "", function() {
+            setcountryjson(list, fileloc, country, setcountry, "", function(list) {
                 message.reply("You have removed yourself from " + setcountry);
             });
             callback();
         }
         })
 
+    },
+
+    aremoveplayer: function(player, message, list, callback){
+        checkforuser(list, player, function(status, country, setcountry) {
+            if (status == false){
+            message.reply("That player has not signed up for a country.");
+            callback(list);
+            }
+            else { 
+            fileloc =  "./config/" + message.guild.id + ".json";
+            setcountryjson(list, fileloc, country, setcountry, "", function() {
+                message.reply("You have removed a player from " + setcountry);
+                callback(list);
+            });
+            }
+        });
+    },
+    removecountry: function(country, message, list, callback){
+        findcountry(list, country, (setcountry, temp)=> {
+            message.reply("You have removed a player from " + country)
+            fileloc =  "./config/" + message.guild.id + ".json";
+            setcountryjson(list, fileloc, temp, country,  "", (list) => {
+                callback(list);
+            })
+        })
+    },
+    setcountry: function(list, message, user, country, callback){
+        if(user === undefined || country === undefined) return message.reply("Please make sure you've provided a user and country");
+        if(isNaN(user)) return message.reply("Make sure the first argument is a player id.");
+        checkforuser(list, message.author.id, function(status){
+            if(temp === undefined || message.guild.members.get(user) === undefined) return message.reply("That is not a player, make sure the id is correct.");
+                
+            if (status) return message.reply("This player already has a country.");
+            findcountry(list, country, (setcountry, jsonloc) => {
+                if(setcountry === undefined){
+                    message.reply("That country doesn't exist/isnt playable. Please use Hoi4 country tags (http://bit.ly/2ucOpU1)");
+                    callback();
+                }
+                else {
+                    if(setcountry == " " || setcountry == ""){
+                         fileloc =  "./config/" + message.guild.id + ".json";
+                         message.reply("You have successfuly reserved " + country + " for " + user);
+                        setcountryjson(list, fileloc, jsonloc, country, user, function() {
+                            callback();
+                        });
+    
+                    }
+                    else if(setcountry == user){
+                        message.reply("That player has already taken that country!");
+                        callback();
+                    }
+                    else {
+                        message.reply("That country has already been taken!");
+                        callback();
+                    };
+               
+        };
+    });
+    });
     }
-
-
 }
 
-function findcountry(list, country, callback, user) {
+
+function findcountry(list, country, callback) {
     var setcountry, temp;
     var jsonlist = list.countries.reservations
     for(var key1 in jsonlist){
@@ -73,7 +128,7 @@ function setcountryjson(list,fileloc, jsonloc, country, user, callback){
 
     fs.unlink(fileloc, function(err) {
         fs.writeFile(fileloc, JSON.stringify(list) , function (err2) {
-            callback();
+            callback(list);
         });
     });
 
