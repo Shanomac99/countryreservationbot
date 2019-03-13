@@ -18,9 +18,28 @@ client.login(DiscordConfig.token)
 client.on("message", message => {
     // Checks if message is from bot, if so ignore it
     if(message.author.bot) return;
-    util.guildchecking.checkforfile(message, function() {
-       util.guildchecking.grablist(message, function(list) {
-            console.log(list);
-        });
-    })
+    try {
+    var config = require("./config/" + message.guild.id + ".json");
+    }
+    catch(e) {
+        var config = require("./config/default.json");
+        util.guildchecking.grablist(message, function(list) {});
+    }
+    var prefix = config.options.prefix;
+    var aprefix = config.options.aprefix;
+
+    var content = message.content.substring(prefix.length).split(" ");
+    var content2 = message.content.substring(aprefix.length).split(" ");
+
+    switch (content[0].toLowerCase()){
+
+        case "setreserve":
+        case "setreservation":
+            util.guildchecking.grablist(message, function(list) {
+                util.country.setplayer(message, list, content[1].toLowerCase(), (country) => {
+
+                });
+            });
+        break;
+    }
 })

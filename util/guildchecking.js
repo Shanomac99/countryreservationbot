@@ -90,33 +90,37 @@ const json = {
       "prefix": "=",
       "aprefix": "-",
       "allowedchannels": [],
-      "rosterchannel": ""
+      "rosterchannel": "",
+      "admins": [106907083877728256]
     }
   }
 
 module.exports = {
     
     // Will test to see if theres a file if not it will create it
-    checkforfile: function(message, callback){
-        if(!message.guild.available) return console.log("Error contacting guild, possible discord outage?");
-
-        // fs scope is going to run in the main file, hence the . vs ..
-        var fileloc =  "./config/" + message.guild.id + ".json"
-            
-           try { // Try to access the file, if you can't create it using scope from here
-            var file = require("../config/" + message.guild.id + ".json");
-           }
-            catch(e){
-               fs.appendFile(fileloc, JSON.stringify(json) , function (err2) {
-                       
-                 });
-            }
-         callback(); // return
-    },
     
     // Grab the list
     grablist: function(message, callback){
+      checkforfile(message, function() {
             var file = require("../config/" + message.guild.id + ".json");
             callback(file);
+          })
     },
+}
+
+
+function checkforfile(message, callback){
+  if(!message.guild.available) return console.log("Error contacting guild, possible discord outage?");
+
+  var fileloc =  "./config/" + message.guild.id + ".json"
+      
+     try { // Try to access the file, if you can't create it using scope from here
+      var file = require("../config/" + message.guild.id + ".json");
+      callback(); // return
+     }
+      catch(e){
+         fs.appendFile(fileloc, JSON.stringify(json) , function (err2) {
+           callback();
+           });
+      }
 }
