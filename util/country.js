@@ -1,4 +1,5 @@
 const fs = require('fs');
+const checkforadmin = require("./checkforadmin.js");
 
 module.exports = {
     
@@ -49,10 +50,10 @@ module.exports = {
     },
 
     aremoveplayer: function(player, message, list, callback){
+        if(isNaN(player)) player = user.id;
         checkforuser(list, player, function(status, country, setcountry) {
             if (status == false){
-            message.reply("That player has not signed up for a country.");
-            callback(list);
+            return message.reply("That player has not signed up for a country.");
             }
             else { 
             fileloc =  "./config/" + message.guild.id + ".json";
@@ -74,9 +75,10 @@ module.exports = {
     },
     setcountry: function(list, message, user, country, callback){
         if(user === undefined || country === undefined) return message.reply("Please make sure you've provided a user and country");
-        if(isNaN(user)) return message.reply("Make sure the first argument is a player id.");
-        checkforuser(list, message.author.id, function(status){
-            if(temp === undefined || message.guild.members.get(user) === undefined) return message.reply("That is not a player, make sure the id is correct.");
+        if(isNaN(user) && message.mentions.members.first() === undefined) return message.reply("Make sure the first argument is a player id/member.");
+        if(isNaN(user)) user = user.id;
+        checkforuser(list, user, function(status, temp, setcountry2){
+            if((temp === undefined) && (message.guild.members.get(user) === undefined && message.guild.members.get(user.id) === undefined)) return message.reply("That is not a player, make sure the id is correct.");
                 
             if (status) return message.reply("This player already has a country.");
             findcountry(list, country, (setcountry, jsonloc) => {
@@ -87,7 +89,7 @@ module.exports = {
                 else {
                     if(setcountry == " " || setcountry == ""){
                          fileloc =  "./config/" + message.guild.id + ".json";
-                         message.reply("You have successfuly reserved " + country + " for " + user);
+                         message.reply("You have successfuly reserved " + country + " for " + message.guild.members.get(user));
                         setcountryjson(list, fileloc, jsonloc, country, user, function() {
                             callback();
                         });
@@ -105,6 +107,39 @@ module.exports = {
         };
     });
     });
+    },
+    addadmin: function(list, message, user, callback){
+        if(isNaN(user) && message.mentions.members.first() === undefined) return message.reply("Make sure the first argument is a player id/member.");
+        if(isNaN(user)) admin = user.id;
+        else
+            admin = user;
+        checkforadmin.checkstatus(list, admin, (status) => {
+            if(status) return message.reply("This user is already an admin");
+        list.options.admins.push(parseInt(admin));
+        fileloc =  "./config/" + message.guild.id + ".json";
+        fs.unlink(fileloc, function(err) {
+            fs.writeFile(fileloc, JSON.stringify(list) , function (err2) {
+                message.reply("You have added " + message.guild.members.get(admin));
+                callback(list);
+            });
+        });
+    })
+    },
+    reset: function(list, message, callback){
+        var jsonlist = list.countries.reservations
+        for(var key1 in jsonlist){
+            temp = jsonlist[key1];
+            for(var key in jsonlist[key1]){
+            setcountry = temp[key];
+            temp[key] = "";
+            }
+        }
+        fileloc =  "./config/" + message.guild.id + ".json";
+        fs.unlink(fileloc, function(err) {
+            fs.writeFile(fileloc, JSON.stringify(list) , function (err2) {
+                callback(list);
+            });
+        });
     }
 }
 
