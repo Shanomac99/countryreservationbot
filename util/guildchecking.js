@@ -10,7 +10,7 @@ const json = {
           "usa": "",
           "fra": "",
           "nzl": "",
-          "cam": "",
+          "can": "",
           "saf": "",
           "ast": "",
           "raj": "",
