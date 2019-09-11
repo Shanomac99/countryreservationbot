@@ -1,0 +1,213 @@
+{
+  "lists": [],
+  "options": {
+    "flags": true,
+    "prefix": "=",
+    "aprefix": "-",
+    "rosterchannel": "",
+    "admins": [
+      106907083877728260
+    ],
+    "disabledcountries": []
+  },
+  "defaultlist": {
+    "countires": {
+      "allies": {
+        "heading": "__**Allies**__\n",
+        "eng": {
+          "flag": "<:United_Kingdom:465922156107399168>",
+          "alias": [
+            "eng",
+            "england",
+            "uk"
+          ]
+        },
+        "usa": {
+          "flag": "<:United_States:465922155700551688>",
+          "alias": [
+            "usa"
+          ]
+        },
+        "fra": {
+          "flag": "<:France:465922151774421014>",
+          "alias": [
+            "fra",
+            "france"
+          ]
+        },
+        "nzl": {
+          "flag": "<:New_Zealand:465922155222269954>",
+          "alias": [
+            "nzl"
+          ]
+        },
+        "can": {
+          "flag": "<:Dominion_of_Canada:465922154563633153>",
+          "alias": [
+            "can",
+            "canada"
+          ]
+        },
+        "saf": {
+          "flag": "<:South_Africa:4659221517998489",
+          "alias": [
+            "saf"
+          ]
+        },
+        "ast": {
+          "flag": "<:Australia:465922155708940288>",
+          "alias": [
+            "ast",
+            "australia"
+          ]
+        },
+        "raj": {
+          "flag": "<:British_Raj:465922156664979456>",
+          "alias": [
+            "raj"
+          ]
+        },
+        "pol": {
+          "flag": "<:Poland:546140336930684928>",
+          "alias": [
+            "pol",
+            "poland"
+          ]
+        },
+        "hol": {
+          "flag": "<:Netherlands:546114315061690388>",
+          "alias": [
+            "hol",
+            "netherlands"
+          ]
+        }
+      },
+      "axis": {
+        "heading": "__**Axis**__\n",
+        "ger": {
+          "flag": "<:Germany:465922641593630730>",
+          "alias": [
+            "ger",
+            "germany"
+          ]
+        },
+        "ita": {
+          "flag": "<:Italy:465922156560384011>",
+          "alias": [
+            "ita",
+            "italy"
+          ]
+        },
+        "hun": {
+          "flag": "<:Hungary:465922151153926144>",
+          "alias": [
+            "hun",
+            "hungary"
+          ]
+        },
+        "rom": {
+          "flag": "<:Kingdom_of_Romania:465922153984819200>",
+          "alias": [
+            "rom",
+            "romania"
+          ]
+        },
+        "spr": {
+          "flag": "<:Kingdom_of_Romania:465922153984819",
+          "alias": [
+            "spr",
+            "spain"
+          ]
+        },
+        "bul": {
+          "flag": "<:Bulgaria:465922150910525450>",
+          "alias": [
+            "bul",
+            "bulgaria"
+          ]
+        },
+        "fin": {
+          "flag": "<:Finland:546118171044741120>",
+          "alias": [
+            "fin",
+            "finland"
+          ]
+        },
+        "ven": {
+          "flag": "<:Venezuela:546118213394497548>",
+          "alias": [
+            "ven",
+            "venezuela"
+          ]
+        }
+      },
+      "comintern": {
+        "heading": "__**Comintern**__\n",
+        "sov": {
+          "flag": "<:Soviet_Union:465922153427238931>",
+          "alias": [
+            "sov",
+            "soviet",
+            "soviets"
+          ]
+        },
+        "mex": {
+          "flag": "<:Mexico:546118699841486849",
+          "alias": [
+            "mex",
+            "mexico"
+          ]
+        },
+        "afg": {
+          "flag": "<:Afghanistan:546118705377968148>",
+          "alias": [
+            "afg",
+            "afgan",
+            "afghanistan"
+          ]
+        }
+      },
+      "asia": {
+        "heading": "__**East Asian Co-Prosperity Sphere**__\n",
+        "jap": {
+          "flag": "<:Japan:465922156513984512>",
+          "alias": [
+            "jap",
+            "japan"
+          ]
+        },
+        "man": {
+          "flag": "<:Manchukuo:465922151132692490>",
+          "alias": [
+            "man",
+            "manchukuo"
+          ]
+        },
+        "sia": {
+          "flag": "<:Siam:465923297935360001>",
+          "alias": [
+            "sia",
+            "siam"
+          ]
+        }
+      },
+      "chinese": {
+        "heading": "__**Chinese United Front**__\n",
+        "chi": {
+          "flag": "<:China:465922150876839952>",
+          "alias": [
+            "chi",
+            "china"
+          ]
+        },
+        "prc": {
+          "flag": "<:Chinese_Peoples_Republic:465922152907014144>",
+          "alias": [
+            "prc",
+            "pchina"
+          ]
+        }
+      }
+    }
+  }
+}

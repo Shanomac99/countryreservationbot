@@ -1,0 +1,49 @@
+{
+    "default": {
+      "info": {
+        "id": null,
+        "type": null,
+        "time": null,
+        "day": null,
+        "timezone": null
+      },
+      "reservations": {
+        "allies": {
+          "eng": null,
+          "usa": null,
+          "fra": null,
+          "nzl": null,
+          "can": null,
+          "saf": null,
+          "ast": null,
+          "raj": null,
+          "pol": null,
+          "hol": null
+        },
+        "axis": {
+          "ger": null,
+          "ita": null,
+          "hun": null,
+          "rom": null,
+          "spr": null,
+          "bul": null,
+          "fin": null,
+          "ven": null
+        },
+        "comintern": {
+          "sov": null,
+          "mex": null,
+          "afg": null
+        },
+        "asia": {
+          "jap": null,
+          "man": null,
+          "sia": null
+        },
+        "chinese": {
+          "chi": null,
+          "prc": null
+        }
+      }
+    }
+  }
